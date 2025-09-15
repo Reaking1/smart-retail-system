@@ -22,13 +22,79 @@ public class Order {
     private Customer customer;
 
     // One order has many items
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> items;
 
     // One order can have one payment
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Payment payment;
 
-    // Getters and setters
-    // ...
+    // Constructors
+    public Order() {}
+
+    public Order(BigDecimal totalAmount, String status, LocalDateTime createdAt, Customer customer) {
+        this.totalAmount = totalAmount;
+        this.status = status;
+        this.createdAt = createdAt;
+        this.customer = customer;
+    }
+
+    // Getters
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public List<OrderItem> getItems() {
+        return items;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    // Setters
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setItems(List<OrderItem> items) {
+        this.items = items;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
 }
+

@@ -1,29 +1,40 @@
 <?php
 /**
- * Simple HTTP Client using cURL
+ * HTTP Client for JSON-based REST API
  */
 
 function httpRequest($url, $method = 'GET', $data = [], $headers = []) {
     $ch = curl_init();
 
-    // Configure options
+    // Set URL
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
     // Set HTTP method
     $method = strtoupper($method);
-    if ($method === 'POST') {
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-    } elseif ($method === 'PUT' || $method === 'DELETE') {
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+    switch ($method) {
+        case 'POST':
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+            break;
+        case 'PUT':
+        case 'DELETE':
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+            break;
+        case 'GET':
+        default:
+            if (!empty($data)) {
+                $url .= '?' . http_build_query($data);
+                curl_setopt($ch, CURLOPT_URL, $url);
+            }
+            break;
     }
 
-    // Set headers if any
-    if (!empty($headers)) {
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    }
+    // Ensure JSON headers
+    $defaultHeaders = ["Content-Type: application/json", "Accept: application/json"];
+    $allHeaders = array_merge($defaultHeaders, $headers);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $allHeaders);
 
     // Execute request
     $response = curl_exec($ch);
@@ -38,6 +49,16 @@ function httpRequest($url, $method = 'GET', $data = [], $headers = []) {
     $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
 
-    return ['success' => true, 'status_code' => $http_code, 'response' => $response];
+    // Decode JSON response automatically
+    $decoded = json_decode($response, true);
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        $decoded = $response; // fallback: raw response if not JSON
+    }
+
+    return [
+        'success' => true,
+        'status_code' => $http_code,
+        'response' => $decoded
+    ];
 }
 ?>
