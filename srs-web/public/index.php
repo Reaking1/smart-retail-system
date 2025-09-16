@@ -1,14 +1,15 @@
-<?php include("includes/db.php"); ?>
+<?php
+include __DIR__ . "/../includes/db.php";
+include __DIR__ . "/../includes/header.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Smart Retail System</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <?php include("includes/header.php"); ?>
-
     <div class="container">
         <h1>Welcome to Smart Retail System</h1>
         <p>Your one-stop shop for all products.</p>
@@ -19,7 +20,7 @@
             $sql = "SELECT * FROM products LIMIT 4";
             $result = $conn->query($sql);
 
-            if ($result->num_rows > 0) {
+            if ($result && $result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='product'>";
                     echo "<h3>" . $row['name'] . "</h3>";

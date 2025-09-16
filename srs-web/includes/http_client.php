@@ -4,7 +4,7 @@
  */
 
 function httpRequest($url, $method = 'GET', $data = [], $headers = []) {
-    $ch = curl_init();
+    $ch = curl_init(); 
 
     // Set URL
     curl_setopt($ch, CURLOPT_URL, $url);
