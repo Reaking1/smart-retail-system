@@ -1,6 +1,7 @@
 <?php
 session_start();
-include("includes/db.php");
+include __DIR__ . "/../includes/db.php";
+include __DIR__ . "/../includes/header.php";
 
 // Initialize cart if not set
 if (!isset($_SESSION['cart'])) {
@@ -32,10 +33,9 @@ if (isset($_GET['remove'])) {
 <head>
     <meta charset="UTF-8">
     <title>Your Cart</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"  href="../assets/css/styles.css">
 </head>
 <body>
-<?php include("includes/header.php"); ?>
 
 <div class="container">
     <h1>Your Shopping Cart</h1>
@@ -56,7 +56,7 @@ if (isset($_GET['remove'])) {
             foreach ($_SESSION['cart'] as $id => $qty) {
                 $sql = "SELECT * FROM products WHERE product_id = $id";
                 $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
+                if ($result && $result->num_rows > 0) {
                     $row = $result->fetch_assoc();
                     $sub_total = $row['price'] * $qty;
                     $total += $sub_total;
@@ -81,5 +81,7 @@ if (isset($_GET['remove'])) {
         <a href="checkout.php"><button>Proceed to Checkout</button></a>
     <?php endif; ?>
 </div>
+
+<?php include __DIR__ . "/../includes/footer.php"; ?>
 </body>
 </html>

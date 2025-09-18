@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../includes/db.php");
+include __DIR__ . "/../../includes/db.php";
 
 // If already logged in, redirect
 if (isset($_SESSION['admin_id'])) {

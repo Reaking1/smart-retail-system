@@ -1,14 +1,15 @@
 <?php
 session_start();
-include("../includes/db.php");
-include("../includes/auth.php"); // Ensures only logged-in admins can view
+include __DIR__ . "/../../includes/db.php";
+include __DIR__ . "/../../includes/auth.php"; // Ensures only logged-in admins can view
 
 // Fetch stats
 $totalCustomers = $conn->query("SELECT COUNT(*) AS total FROM customers")->fetch_assoc()['total'];
-$totalOrders = $conn->query("SELECT COUNT(*) AS total FROM orders")->fetch_assoc()['total'];
-$totalRevenue = $conn->query("SELECT IFNULL(SUM(total_amount), 0) AS revenue FROM orders")->fetch_assoc()['revenue'];
-$totalProducts = $conn->query("SELECT COUNT(*) AS total FROM products")->fetch_assoc()['total'];
+$totalOrders    = $conn->query("SELECT COUNT(*) AS total FROM orders")->fetch_assoc()['total'];
+$totalRevenue   = $conn->query("SELECT IFNULL(SUM(total_amount), 0) AS revenue FROM orders")->fetch_assoc()['revenue'];
+$totalProducts  = $conn->query("SELECT COUNT(*) AS total FROM products")->fetch_assoc()['total'];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,6 +1,7 @@
 <?php
 session_start();
-include("includes/db.php");
+include __DIR__ . "/../includes/db.php"; 
+include __DIR__ . "/../includes/header.php"; 
 
 // Redirect if cart is empty
 if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
@@ -38,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $order_id = $stmt->insert_id;
     $stmt->close();
 
-    // Insert order items
+    // Insert order items + reduce stock
     foreach ($_SESSION['cart'] as $id => $qty) {
         $sql = "SELECT * FROM products WHERE product_id = $id";
         $result = $conn->query($sql);
@@ -50,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute();
         $stmt->close();
 
-        // Reduce stock
         $new_stock = $row['stock_quantity'] - $qty;
         $conn->query("UPDATE products SET stock_quantity = $new_stock WHERE product_id = $id");
     }
@@ -73,10 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Checkout</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
-<?php include("includes/header.php"); ?>
 
 <div class="container">
     <h1>Checkout</h1>
@@ -103,5 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
     <?php endif; ?>
 </div>
+
+<?php include __DIR__ . "/../includes/footer.php"; ?>
 </body>
 </html>

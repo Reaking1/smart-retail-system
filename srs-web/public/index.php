@@ -7,7 +7,7 @@ include __DIR__ . "/../includes/header.php";
 <head>
     <meta charset="UTF-8">
     <title>Smart Retail System</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
     <div class="container">

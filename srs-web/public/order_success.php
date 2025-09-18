@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("includes/db.php");
+include __DIR__ . "/../includes/db.php"; 
 
 // Check if order_id exists
 if (!isset($_GET['order_id'])) {
@@ -45,17 +45,17 @@ $stmt->close();
 <head>
     <meta charset="UTF-8">
     <title>Order Success</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"  href="../assets/css/styles.css">
 </head>
 <body>
-<?php include("includes/header.php"); ?>
+<?php include __DIR__ . "/../includes/header.php"; ?>
 
 <div class="container">
     <h1>🎉 Order Placed Successfully!</h1>
     <p>Thank you, <b><?php echo htmlspecialchars($order['name']); ?></b>!</p>
     <p>Your Order ID is <b>#<?php echo $order['order_id']; ?></b></p>
     <p>Order Status: <b><?php echo $order['status']; ?></b></p>
-    <p>Total Amount: <b>$<?php echo number_format($order['total_amount'], 2); ?></b></p>
+    <p>Total Amount: <b>R <?php echo number_format($order['total_amount'], 2); ?></b></p>
     <p>Placed On: <b><?php echo $order['created_at']; ?></b></p>
 
     <h3>Delivery Details</h3>
@@ -75,8 +75,8 @@ $stmt->close();
         <tr>
             <td><?php echo htmlspecialchars($item['name']); ?></td>
             <td><?php echo $item['quantity']; ?></td>
-            <td>$<?php echo number_format($item['price'], 2); ?></td>
-            <td>$<?php echo number_format($item['quantity'] * $item['price'], 2); ?></td>
+            <td>R <?php echo number_format($item['price'], 2); ?></td>
+            <td>R <?php echo number_format($item['quantity'] * $item['price'], 2); ?></td>
         </tr>
         <?php endwhile; ?>
     </table>
@@ -84,5 +84,7 @@ $stmt->close();
     <br>
     <a href="products.php">🛍️ Continue Shopping</a>
 </div>
+
+<?php include __DIR__ . "/../includes/footer.php"; ?>
 </body>
 </html>

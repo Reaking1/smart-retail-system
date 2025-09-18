@@ -5,7 +5,6 @@ session_start();
 $_SESSION = [];
 session_destroy();
 
-// Redirect to login page
+// Redirect to admin login page (same folder as this file)
 header("Location: login.php");
 exit;
-?>
