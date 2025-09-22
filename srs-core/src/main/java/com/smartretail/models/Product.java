@@ -9,12 +9,13 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId;
 
+    private Long productId;
     private String name;
     private String description;
     private BigDecimal price;
     private int stock;
+    private String imageUrl;
 
     // A product can be part of many order items
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
@@ -23,11 +24,12 @@ public class Product {
     // Constructors
     public Product() {}
 
-    public Product(String name, String description, BigDecimal price, int stock) {
+    public Product(String name, String description, BigDecimal price, int stock, String imageUrl) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.stock = stock;
+        this.imageUrl = imageUrl;
     }
 
     // Getters
@@ -55,6 +57,11 @@ public class Product {
         return orderItems;
     }
 
+
+    public String getImageUrl () {
+        return imageUrl;
+    }
+
     // Setters
     public void setProductId(Long productId) {
         this.productId = productId;
@@ -79,4 +86,11 @@ public class Product {
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
     }
+
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+
 }
