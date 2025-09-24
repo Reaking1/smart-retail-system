@@ -12,19 +12,9 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <title>Manage Customers</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <style>
-        .container { width: 90%; margin: 30px auto; }
-        h1 { color: #333; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
-        th { background: #007bff; color: white; }
-        tr:nth-child(even) { background: #f2f2f2; }
-        a.back { display: inline-block; margin-top: 20px; background: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; }
-        a.back:hover { background: #0056b3; }
-    </style>
+   <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
-<body>
+<body class="manage-customers">
 <?php include("../includes/header.php"); ?>
 
 <div class="container">

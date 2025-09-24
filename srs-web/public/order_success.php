@@ -50,7 +50,7 @@ $stmt->close();
 <body>
 <?php include __DIR__ . "/../includes/header.php"; ?>
 
-<div class="container">
+<div class="order-success-container">
     <h1>🎉 Order Placed Successfully!</h1>
     <p>Thank you, <b><?php echo htmlspecialchars($order['name']); ?></b>!</p>
     <p>Your Order ID is <b>#<?php echo $order['order_id']; ?></b></p>

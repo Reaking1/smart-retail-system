@@ -27,24 +27,10 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <title>Manage Orders</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <style>
-        .container { width: 95%; margin: 30px auto; }
-        h1 { color: #333; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
-        th { background: #007bff; color: white; }
-        tr:nth-child(even) { background: #f2f2f2; }
-        a.status { text-decoration: none; padding: 5px 10px; border-radius: 5px; color: white; margin-right: 5px; }
-        a.pending { background: #ffc107; color: #333; }
-        a.shipped { background: #17a2b8; }
-        a.completed { background: #28a745; }
-        a.cancelled { background: #dc3545; }
-        a.back { display: inline-block; margin-top: 20px; background: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; }
-        a.back:hover { background: #0056b3; }
-    </style>
+     <link rel="stylesheet" href="../../assets/css/styles.css">
+    
 </head>
-<body>
+<body class="manage-orders">
 <?php include("../includes/header.php"); ?>
 
 <div class="container">

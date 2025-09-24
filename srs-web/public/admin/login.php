@@ -1,10 +1,11 @@
 <?php
 session_start();
 include __DIR__ . "/../../includes/db.php";
+include __DIR__ . "/../../includes/config.php"; // BASE_URL available
 
 // If already logged in, redirect
 if (isset($_SESSION['admin_id'])) {
-    header("Location: dashboard.php");
+    header("Location: " . BASE_URL . "admin/dashboard.php");
     exit;
 }
 
@@ -26,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Login successful
         $_SESSION['admin_id'] = $admin['admin_id'];
         $_SESSION['admin_name'] = $admin['username'];
-        header("Location: dashboard.php");
+        header("Location: " . BASE_URL . "admin/dashboard.php");
         exit;
     } else {
         $error = "Invalid username or password.";
@@ -38,7 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Admin Login</title>
-    <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+
     <style>
         body { font-family: Arial, sans-serif; background: #f4f4f4; }
         .login-container { width: 400px; margin: 100px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
@@ -50,6 +52,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
+    <!-- Shared header -->
+      <!-- Shared header -->
+    <?php include __DIR__ . "/../../includes/header.php"; ?>
+
     <div class="login-container">
         <h1>Admin Login</h1>
         <?php if ($error): ?>

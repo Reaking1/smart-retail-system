@@ -1,11 +1,13 @@
 <?php
-session_start();
+// Start session only if not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Check if admin is logged in
 if (!isset($_SESSION['admin_id'])) {
     // Not logged in, redirect to login page
-header("Location: admin/login.php");
-
+    header("Location: login.php");
     exit;
 }
 ?>

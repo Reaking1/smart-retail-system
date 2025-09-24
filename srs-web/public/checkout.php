@@ -77,31 +77,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
 
-<div class="container">
+<div class="checkout-container">
     <h1>Checkout</h1>
-
     <?php if (isset($success)): ?>
-        <p style="color: green; font-weight: bold;"><?php echo $success; ?></p>
-        <a href="products.php">Continue Shopping</a>
+        <p class="success-msg"><?php echo $success; ?></p>
+        <a href="products.php" class="continue-btn">Continue Shopping</a>
     <?php else: ?>
         <h3>Enter Your Details</h3>
         <form method="POST" action="checkout.php">
             <label>Full Name</label>
             <input type="text" name="name" required>
-
             <label>Email</label>
             <input type="email" name="email" required>
-
             <label>Phone</label>
             <input type="text" name="phone" required>
-
             <label>Address</label>
             <textarea name="address" required></textarea>
-
             <button type="submit">Place Order</button>
         </form>
     <?php endif; ?>
 </div>
+
 
 <?php include __DIR__ . "/../includes/footer.php"; ?>
 </body>

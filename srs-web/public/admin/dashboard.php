@@ -1,7 +1,8 @@
 <?php
 session_start();
-include __DIR__ . "/../../includes/db.php";
-include __DIR__ . "/../../includes/auth.php"; // Ensures only logged-in admins can view
+include(__DIR__ . "/../../includes/db.php");
+include(__DIR__ . "/../../includes/auth.php");
+// Ensures only logged-in admins can view
 
 // Fetch stats
 $totalCustomers = $conn->query("SELECT COUNT(*) AS total FROM customers")->fetch_assoc()['total'];
@@ -15,22 +16,11 @@ $totalProducts  = $conn->query("SELECT COUNT(*) AS total FROM products")->fetch_
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <style>
-        body { font-family: Arial, sans-serif; background: #f4f4f4; }
-        .container { width: 90%; margin: 30px auto; }
-        h1 { color: #333; }
-        .stats { display: flex; gap: 20px; margin-top: 20px; }
-        .card { background: white; padding: 20px; border-radius: 10px; flex: 1; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        .card h2 { margin: 0; font-size: 2em; color: #007bff; }
-        .card p { margin: 5px 0 0; color: #555; }
-        nav { margin-top: 30px; }
-        nav a { display: inline-block; margin: 10px; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; }
-        nav a:hover { background: #0056b3; }
-    </style>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+  
 </head>
-<body>
-    <?php include("../includes/header.php"); ?>
+<body  class="admin-dashboard">
+    <?php include("/../includes/header.php"); ?>
 
     <div class="container">
         <h1>Admin Dashboard</h1>

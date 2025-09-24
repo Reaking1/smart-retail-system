@@ -45,27 +45,9 @@ $result = $conn->query("SELECT * FROM products ORDER BY product_id DESC");
 <head>
     <meta charset="UTF-8">
     <title>Manage Products</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <style>
-        body { font-family: Arial, sans-serif; background: #f4f4f9; }
-        .container { width: 95%; margin: 30px auto; }
-        h1 { color: #333; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; vertical-align: middle; }
-        th { background: #6f42c1; color: white; }
-        tr:nth-child(even) { background: #f9f9f9; }
-        form { margin-top: 20px; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-        label { font-weight: bold; }
-        input, textarea { width: 100%; padding: 8px; margin: 5px 0 15px 0; border: 1px solid #ccc; border-radius: 5px; }
-        button { padding: 10px 15px; margin-top: 10px; background: #6f42c1; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        button:hover { background: #563d7c; }
-        a.action { text-decoration: none; padding: 5px 10px; border-radius: 5px; color: white; }
-        a.edit { background: #28a745; }
-        a.delete { background: #dc3545; }
-        img.product-thumb { width: 60px; height: 60px; object-fit: cover; border-radius: 5px; }
-    </style>
+      <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
-<body>
+<body class="manage-products">
 <?php include("../includes/header.php"); ?>
 
 <div class="container">
